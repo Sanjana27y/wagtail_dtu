@@ -1,0 +1,49 @@
+/* Admissions Page Styling */
+.announcement-bar {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.announcement-bar a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+.announcement-bar a:hover {
+    text-decoration: underline;
+}
+
+.admission-intro {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admission-intro h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.admission-intro p {
+    font-size: 1.2em;
+}
+
+.allotment-notice {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.allotment-notice p {
+    font-size: 1.2em;
+}
+
+.allotment-notice a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.allotment-notice a:hover {
+    text-decoration: underline;
+}

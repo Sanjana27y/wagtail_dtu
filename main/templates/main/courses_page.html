@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+    <style>
+        .course-item {
+            margin-bottom: 20px;
+        }
+        .course-img {
+            width: 400px;
+        }
+        .course-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .course-description {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Courses</h1>
+    <div>
+        {% for course in page.courses.all %}
+        <div class="course-item">
+            <a href="{{ course.pdf.url }}" target="_blank">
+                {% image course.image width-400 class="course-img" %}
+                <div>{{ course.title }}</div>
+            </a>
+            <div class="course-description">
+                {{ course.description }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html> {% endcomment %}
+
+
+ {%load wagtailcore_tags%}
+{% load static %}
+
+
+ {% block content %}
+  <h1>{{ page.title }}</h1>
+  <p>{{ page.intro }}</p>
+  <div class="courses">
+    {% for course in page.courses.all %}
+      <div class="course">
+        <figure class="effect-bubba">
+        <a href="{{ course.pdf.url }}" target="_blank">
+            {% image course.image width-400 class="course-img" %}
+              <div> View Cirriculum </div>
+         </a>
+        </figure>
+        <h2>{{ course.title }}</h2>
+        <p>{{ course.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %} 

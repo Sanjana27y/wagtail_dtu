@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<div class="announcement-bar">
+    <marquee behavior="scroll" direction="left">
+        {% for announcement in page.announcements.all %}
+            <a href="{{ announcement.link }}" target="_blank">{{ announcement.text }}</a>
+        {% endfor %}
+    </marquee>
+</div>
+
+<div class="admission-intro">
+    <h1>{{ page.intro_heading }}</h1>
+    <p>{{ page.intro_text|richtext }}</p>
+</div>
+
+<div class="allotment-notice">
+    <p>{{ page.allotment_notice }} <a href="{{ page.allotment_link }}" target="_blank">Click here</a></p>
+</div>
+{% endblock %}

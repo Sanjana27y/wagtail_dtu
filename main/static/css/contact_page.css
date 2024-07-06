@@ -1,0 +1,38 @@
+.project-img {
+    object-fit: cover;
+    height: 17rem;
+    border-bottom: 1px solid var(--bs-gray-300);
+}
+
+.effect-bubba {
+    position: relative;
+}
+
+figure.effect-bubba img {
+    -webkit-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+}
+
+figure.effect-bubba:hover img {
+    opacity: 0.4;
+    filter: blur(1px);
+    cursor: pointer;
+}
+
+.effect-bubba div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    opacity: 0;
+    background: gray;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    color: white;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.effect-bubba :hover div {
+    opacity: 1;
+}

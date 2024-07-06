@@ -1,0 +1,147 @@
+
+/*---Course---*/
+.course {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.course h1 {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.course p {
+    font-size: 15px;
+    font-weight: 400;
+    padding-top: 10px;
+}
+
+.course .row {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.course-col {
+    flex-basis: 31%;
+    background: #fff3f3;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+
+.course-col:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+@media(max-width: 700px) {
+    .row {
+        flex-direction: column;
+    }
+}
+
+
+
+.homepage {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.card {
+    width: 45%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.scrolling-content {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.facilities video {
+    width: 100%;
+    height: auto;
+}
+
+.web-resources, .other-links {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.resource, .link {
+    text-align: center;
+    position: relative;
+}
+
+.resource img, .link img {
+    width: 50px;
+    height: 50px;
+}
+
+.resource a, .link a {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.resource:hover a, .link:hover a {
+    display: block;
+}
+
+.contact-button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+footer {
+    margin-top: 40px;
+}
+
+footer a {
+    margin: 0 10px;
+    color: #000;
+    text-decoration: none;
+}
+
+.facilities video {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}

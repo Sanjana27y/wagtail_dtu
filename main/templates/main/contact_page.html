@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<div class="contact-page">
+    <h1>{{ page.title }}</h1>
+    <div class="contact-section">
+        <h2>Emergency Helpline Number:</h2>
+        <p>{{ page.emergency_helpline|linebreaks }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>You may contact us at the following:</h2>
+        <p>{{ page.contact_info|linebreaks }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>E-mail Id of DTU Mitr:</h2>
+        <p>{{ page.email }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>Phone:</h2>
+        <p>{{ page.phone }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>Fax:</h2>
+        <p>{{ page.fax }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>Address:</h2>
+        <p><a href="{{ page.address_link }}" target="_blank">{{ page.address|linebreaks }}</a></p>
+    </div>
+</div>
+{% endblock %}

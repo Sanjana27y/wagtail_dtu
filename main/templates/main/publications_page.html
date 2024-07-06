@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <div class="publications-intro">
+        {{ page.intro|richtext }}
+    </div>
+
+    {% for year in page.years.all %}
+        <div class="publications-year">
+            <h2>{{ year.year }}</h2>
+            <ul class="publications-list">
+                {% for publication in year.publications.all %}
+                    <li>
+                        <strong>{{ publication.title }}</strong><br>
+                        <em>{{ publication.authors }}</em><br>
+                        {% if publication.link %}
+                            <a href="{{ publication.link }}" target="_blank">Read more</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}

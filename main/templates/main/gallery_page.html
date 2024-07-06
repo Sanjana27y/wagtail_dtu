@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <div class="gallery-intro">
+        {{ page.intro|richtext }}
+    </div>
+
+    {% for heading in page.headings.all %}
+        <div class="gallery-heading">
+            <h2>{{ heading.title }}</h2>
+            <div class="gallery-slideshow">
+                {% for image in heading.images.all %}
+                    <div class="gallery-slide">
+                        {% image image.image original %}
+                        {% if image.caption %}
+                            <p>{{ image.caption }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="gallery-navigation">
+                <button class="prev">Previous</button>
+                <button class="next">Next</button>
+            </div>
+        </div>
+        <!-- Include this in your gallery_page.html -->
+<div class="gallery-navigation">
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slideshows = document.querySelectorAll('.gallery-slideshow');
+
+        slideshows.forEach(slideshow => {
+            const slides = slideshow.querySelectorAll('.gallery-slide');
+            let index = 0;
+
+            const updateSlides = () => {
+                slides.forEach((slide, i) => {
+                    slide.style.transform = `translateX(${(i - index) * 100}%)`;
+                });
+            };
+
+            slideshow.parentElement.querySelector('.next').addEventListener('click', () => {
+                index = (index + 1) % slides.length;
+                updateSlides();
+            });
+
+            slideshow.parentElement.querySelector('.prev').addEventListener('click', () => {
+                index = (index - 1 + slides.length) % slides.length;
+                updateSlides();
+            });
+
+            updateSlides();
+        });
+    });
+</script>
+
+    {% endfor %}
+{% endblock %}

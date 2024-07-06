@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    <div>{{ page.intro|richtext }}</div>
+    <div class="branches">
+        {% for branch in page.branches.all %}
+            <div class="branch-item">
+                {% if branch.image %}
+                    <a href="{{ branch.branch_faculty_page.url }}">
+                        {% image branch.image width-400 %}
+                    </a>
+                {% endif %}
+                <h2><a href="{{ branch.branch_faculty_page.url }}">{{ branch.title }}</a></h2>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>{{ page.title }}</title>
+</head>
+<body>
+    <h1>{{ page.title }}</h1>
+    <div>{{ page.intro|richtext }}</div>
+    <div class="branches">
+        {% for branch in page.branches.all %}
+            <div class="branch-item">
+                {% if branch.image %}
+                    <a href="{{ branch.branch_faculty_page.url }}">
+                        <img src="{{ branch.image.url }}" alt="{{ branch.title }}">
+                    </a>
+                {% endif %}
+                <h2><a href="{{ branch.branch_faculty_page.url }}">{{ branch.title }}</a></h2>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html> {% endcomment %}

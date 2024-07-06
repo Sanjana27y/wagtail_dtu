@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+    <div>{{ page.intro|richtext }}</div>
+    <div class="about-us-section">
+        <h2>Vision and Mission</h2>
+        {% for block in page.vision_mission %}
+    {% include_block block %}
+{% endfor %}
+        {% comment %} <div>{{ page.vision_mission|richtext }}</div> {% endcomment %}
+    </div>
+    <div class="about-us-section">
+        <h2>History</h2>
+        {% for block in page.history%}
+        {% include_block block %}
+    {% endfor %}
+        {% comment %} <div>{{ page.history|richtext }}</div> {% endcomment %}
+    </div>
+    <div class="about-us-section">
+        <h2>Core Values</h2>
+        {% for block in page.core_values %}
+        {% include_block block %}
+    {% endfor %}
+        {% comment %} <div>{{ page.core_values|richtext }}</div> {% endcomment %}
+    </div>
+    <div class="about-us-section">
+        <h2>Research</h2>
+        {% for block in page.research %}
+        {% include_block block %}
+    {% endfor %}
+        {% comment %} <div>{{ page.research|richtext }}</div> {% endcomment %}
+    </div>
+    <div class="about-us-section">
+        <h2>Campus Map</h2>
+        {% for block in page.campus_map %}
+        {% include_block block %}
+    {% endfor %}
+        {% comment %} <div>{{ page.campus_map|richtext }}</div> {% endcomment %}
+    </div>
+{% endblock %}

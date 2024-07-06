@@ -1,0 +1,37 @@
+/* Publications Page Styling */
+.publications-intro {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.publications-year {
+    margin-bottom: 40px;
+}
+
+.publications-year h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.publications-list {
+    list-style: none;
+    padding: 0;
+}
+
+.publications-list li {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.publications-list a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.publications-list a:hover {
+    text-decoration: underline;
+}
