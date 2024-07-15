@@ -1,4 +1,4 @@
-/* Admissions Page Styling */
+/* Admissions Page Styling
 .announcement-bar {
     background-color: #f8f9fa;
     padding: 10px;
@@ -42,6 +42,133 @@
 .allotment-notice a {
     color: #007bff;
     text-decoration: none;
+}
+
+.allotment-notice a:hover {
+    text-decoration: underline;
+} */
+
+.admission-box h1{
+    
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -200%);
+        color: white;
+        text-align: center;
+        font-size: 3em;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        margin-bottom: -200px;
+    
+}
+
+.admission_header{
+    position: relative;
+    background: url('images/dtuimage2.png') no-repeat center center;
+    font-size: small;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    overflow: hidden;
+
+}
+.admission_header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
+}
+
+ .course-box  {
+    position: relative;
+    z-index: 1;
+} 
+.course-box h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -350%);;
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+    margin-bottom: -200px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.announcement-bar {
+    background: #0044cc;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.announcement-bar marquee {
+    font-size: 1rem;
+}
+
+.announcement-bar marquee a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.announcement-bar marquee a:hover {
+    text-decoration: underline;
+}
+
+.admission-intro {
+    padding: 40px 20px;
+    text-align: center;
+    background: #ffffff;
+}
+
+.admission-intro h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.admission-intro p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.allotment-notice {
+    padding: 20px;
+    text-align: center;
+    background: #f5f5f5;
+}
+
+.allotment-notice p {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.allotment-notice a {
+    color: #0044cc;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .allotment-notice a:hover {

@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.faculty_header{
+    position: relative;
+    background: url('images/dtuimage5.jpg') no-repeat center center;
+    
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    overflow: hidden;
+
+}
+.faculty_header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
+}
+
+.faculty-box  {
+    position: relative;
+    z-index: 1;
+} 
+.faculty-box h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -550%);;
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+    margin-bottom: -200px;
+}
+
+.faculty-box {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.faculty-box h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.branches {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.branch-item {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    transition: transform 0.2s;
+}
+
+.branch-item img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.branch-item h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.branch-item a {
+    text-decoration: none;
+    color: #333;
+}
+
+.branch-item a:hover {
+    text-decoration: underline;
+}
+
+.branch-item:hover {
+    transform: translateY(-10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .branches {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .branch-item {
+        width: 80%;
+        margin: 20px 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}

@@ -1,38 +1,104 @@
-.project-img {
-    object-fit: cover;
-    height: 17rem;
-    border-bottom: 1px solid var(--bs-gray-300);
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.effect-bubba {
+.contact_header {
     position: relative;
+    background: url('images/dtuimage3.png') no-repeat center center;
+    
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    overflow: hidden;
+
+}
+.contact_header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
 }
 
-figure.effect-bubba img {
-    -webkit-transition: opacity 0.35s;
-    transition: opacity 0.35s;
-}
-
-figure.effect-bubba:hover img {
-    opacity: 0.4;
-    filter: blur(1px);
-    cursor: pointer;
-}
-
-.effect-bubba div {
+ .course-box  {
+    position: relative;
+    z-index: 1;
+} 
+.course-box h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    opacity: 0;
-    background: gray;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
+    transform: translate(-50%, -350%);;
     color: white;
-    transition: visibility 0s, opacity 0.5s linear;
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+    margin-bottom: -200px;
 }
 
-.effect-bubba :hover div {
-    opacity: 1;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.contact-page {
+    padding: 20px;
+}
+
+.contact-page  {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-page  {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.contact-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.contact-section h2 {
+    font-size: 1.5rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.contact-section p {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.contact-section a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .contact-page {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .contact-section {
+        flex: 0 0 48%;
+        margin-bottom: 30px;
+    }
 }

@@ -1,9 +1,90 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags media_tags %}
+
+{% block content %}
+<section class="contact_header">
+    <div class="logo-nav">
+        {% image page.logo original %}
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/about_us">ABOUT</a></li>
+                    <li><a href="/courses">COURSE</a></li>
+                    <li><a href="/faculty">FACULTY</a></li>
+                    <li><a href="/gallery">GALLERY</a></li>
+                    <li><a href="/admission">ADMISSION</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+    </div>
+</section>
+
+
+    <div class="course-box">
+        <h1>{{ page.title }}</h1>
+    </div>
+    <div class="contact-page">
+    <div class="contact-section">
+        <h2>Emergency Helpline Number:</h2>
+        <p>{{ page.emergency_helpline|linebreaks }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>You may contact us at the following:</h2>
+        <p>{{ page.contact_info|linebreaks }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>E-mail Id of DTU Mitr:</h2>
+        <p>{{ page.email }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>Phone:</h2>
+        <p>{{ page.phone }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>Fax:</h2>
+        <p>{{ page.fax }}</p>
+    </div>
+    <div class="contact-section">
+        <h2>Address:</h2>
+        <p><a href="{{ page.address_link }}" target="_blank">{{ page.address|linebreaks }}</a></p>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% comment %} {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
 {% block content %}
+<section class="contact_header">
+    <div class="logo-nav">
+      <div class="img"></div>
+      <nav>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="/about_us">ABOUT</a></li>
+            <li><a href="/courses">COURSE</a></li>
+            <li><a href="/faculty">FACULTY</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
+            <li><a href="/admission">ADMISSION</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+    </div>
+  </section>
+
 <div class="contact-page">
+    <div class="course-box">
     <h1>{{ page.title }}</h1>
+    </div>
     <div class="contact-section">
         <h2>Emergency Helpline Number:</h2>
         <p>{{ page.emergency_helpline|linebreaks }}</p>
@@ -29,4 +110,4 @@
         <p><a href="{{ page.address_link }}" target="_blank">{{ page.address|linebreaks }}</a></p>
     </div>
 </div>
-{% endblock %}
+{% endblock %} {% endcomment %}

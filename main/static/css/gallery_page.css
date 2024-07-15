@@ -1,69 +1,151 @@
-.gallery-heading {
-    margin-bottom: 40px;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.gallery-slideshow {
+
+.gallery_header {
+    position: relative;
+    background: url('images/dtuimage4.jpg') no-repeat center center;
+    
+    background-size: cover;
     display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    overflow: hidden;
+
+}
+.gallery_header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
 }
 
-.gallery-slide {
-    flex: none;
-    width: 100%;
-    scroll-snap-align: start;
+.gallery-box  {
+    position: relative;
+    z-index: 1;
+} 
+.gallery-box h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -350%);;
+    color: white;
     text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+    margin-bottom: -200px;
 }
 
-.gallery-slide img {
-    max-width: 100%;
-    height: auto;
-}
 
-/* Gallery Page Styling */
 .gallery-intro {
+    padding: 40px 20px;
     text-align: center;
-    margin-bottom: 20px;
+    background: #ffffff;
+}
+
+.gallery-intro p {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .gallery-heading {
-    margin-bottom: 40px;
+    padding: 20px;
+    text-align: center;
+    background: #f5f5f5;
+    margin: 20px 0;
 }
 
 .gallery-heading h2 {
-    text-align: center;
+    font-size: 2rem;
+    color: #333;
     margin-bottom: 20px;
-    font-size: 1.5em;
 }
 
+/* Ensure the parent containers are constrained */
 .gallery-slideshow {
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    gap: 20px;
-    padding: 20px 0;
-}
-
-.gallery-slide {
-    flex: none;
-    width: 80%;
-    scroll-snap-align: center;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 8px;
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
     overflow: hidden;
-    background: #fff;
+    height: 600px; /* Set a fixed height for the slideshow */
 }
 
+/* Ensure all slides are constrained */
+.gallery-slide {
+    display: none;
+    height: 100%;
+    width: 100%; /* Ensure each slide takes full width */
+}
+
+/* Images should cover their container, but maintain their aspect ratio */
 .gallery-slide img {
     width: 100%;
-    height: auto;
-    display: block;
-    border-bottom: 2px solid #ddd;
+    height: 100%;
+    object-fit: cover; /* Cover the container, maintaining aspect ratio */
 }
 
-.gallery-slide p {
-    padding: 10px;
-    font-size: 1em;
-    color: #333;
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 3px;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.prev {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.next {
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-navigation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
 }

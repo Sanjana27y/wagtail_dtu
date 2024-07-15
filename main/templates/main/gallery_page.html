@@ -2,6 +2,179 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
+<section class="gallery_header">
+    <div class="logo-nav">
+        {% image page.logo original %}
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/about_us">ABOUT</a></li>
+                    <li><a href="/courses">COURSE</a></li>
+                    <li><a href="/faculty">FACULTY</a></li>
+                    <li><a href="/gallery">GALLERY</a></li>
+                    <li><a href="/admission">ADMISSION</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+    </div>
+</section>
+<div class="gallery-box">
+    <h1>{{ page.title }}</h1>
+  </div>
+<div class="gallery-intro">
+    {{ page.intro|richtext }}
+</div>
+
+{% for heading in page.headings.all %}
+    <div class="gallery-heading">
+        <h2>{{ heading.title }}</h2>
+        <div class="gallery-slideshow">
+            {% for image in heading.images.all %}
+                <div class="gallery-slide">
+                    {% image image.image original %}
+                    {% if image.caption %}
+                        <p>{{ image.caption }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </div>
+        <div class="gallery-navigation">
+            {% for image in heading.images.all %}
+                <span class="dot"></span>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+
+
+
+
+{% comment %} {% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<section class="courses_header">
+    <div class="logo-nav">
+        <div class="img"></div>
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/about_us">ABOUT</a></li>
+                    <li><a href="/courses">COURSE</a></li>
+                    <li><a href="/faculty">FACULTY</a></li>
+                    <li><a href="/gallery">GALLERY</a></li>
+                    <li><a href="/admission">ADMISSION</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+    </div>
+</section>
+
+<div class="gallery-intro">
+    {{ page.intro|richtext }}
+</div>
+
+{% for heading in page.headings.all %}
+    <div class="gallery-heading">
+        <h2>{{ heading.title }}</h2>
+        <div class="gallery-slideshow">
+            {% for image in heading.images.all %}
+                <div class="gallery-slide">
+                    {% image image.image original %}
+                    {% if image.caption %}
+                        <p>{{ image.caption }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="gallery-navigation">
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
+    </div>
+{% endfor %} {% endcomment %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slideshows = document.querySelectorAll('.gallery-slideshow');
+    
+        slideshows.forEach(slideshow => {
+            let slideIndex = 0;
+            const slides = slideshow.querySelectorAll('.gallery-slide');
+            const dots = slideshow.parentElement.querySelectorAll('.dot');
+    
+            function showSlides(n) {
+                if (n >= slides.length) { slideIndex = 0 }
+                if (n < 0) { slideIndex = slides.length - 1 }
+    
+                slides.forEach((slide, i) => {
+                    slide.style.display = (i === slideIndex) ? 'block' : 'none';
+                });
+    
+                dots.forEach((dot, i) => {
+                    dot.className = dot.className.replace(' active', '');
+                    if (i === slideIndex) {
+                        dot.className += ' active';
+                    }
+                });
+            }
+    
+            showSlides(slideIndex);
+    
+            slideshow.parentElement.querySelector('.prev').addEventListener('click', function() {
+                showSlides(slideIndex -= 1);
+            });
+    
+            slideshow.parentElement.querySelector('.next').addEventListener('click', function() {
+                showSlides(slideIndex += 1);
+            });
+    
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    showSlides(slideIndex = index);
+                });
+            });
+        });
+    });
+    
+    
+</script>
+{% endblock %}
+
+
+{% comment %} {% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+<section class="courses_header">
+    <div class="logo-nav">
+      <div class="img"></div>
+      <nav>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="/about_us">ABOUT</a></li>
+            <li><a href="/courses">COURSE</a></li>
+            <li><a href="/faculty">FACULTY</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
+            <li><a href="/admission">ADMISSION</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+    </div>
+  </section>
+
     <div class="gallery-intro">
         {{ page.intro|richtext }}
     </div>
@@ -60,4 +233,4 @@
 </script>
 
     {% endfor %}
-{% endblock %}
+{% endblock %} {% endcomment %}

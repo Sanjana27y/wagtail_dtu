@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.about_header {
+    position: relative;
+    background: url('images/dtuimage1.png') no-repeat center center;
+    
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    overflow: hidden;
+
+}
+.about_header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Adjust opacity as necessary */
+}
+
+.about_header .about-box {
+    position: relative;
+    z-index: 1;
+}
+.about_header .about-box h1 {
+    color: white;
+    font-size: 3rem; /* Adjust as necessary */
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.about-us {
+    background-color: #f5f5dc; /* Beige background */
+    padding: 50px;
+    text-align: center;
+    font-size: 1.2rem; /* Adjust as necessary */
+    
+}
+
+.about-us  {
+    max-width: 800px;
+    margin: 0 auto;
+}
+/* .content{
+
+} */
+
+.content {
+    width: 100%;
+    text-align:start;
+    font-family: 'Roboto', sans-serif; /* Apply the Google Font */
+    font-size: 16px; /* Set a base font size */
+    line-height: 1.6; /* Improve readability with line height */
+    color: #333; /* Text color */
+    padding: 20px; /* Adjust padding as needed for readability */
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+}
+
+.header .content {
+    max-width: 1200px; /* Optional: Set a max-width for better readability on large screens */
+    margin: 0 auto; /* Center the content */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Background color with some opacity */
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .side-images {
+        flex-direction: row;
+        margin-bottom: 20px;
+    }
+    .content {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+}
+
+
+.about-us-section {
+    margin-bottom: 40px;
+}
+
+.about-us-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.side-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.side-images.left {
+    align-items: flex-end; /* Align images to the right for left side */
+}
+
+.side-images.right {
+    align-items: flex-start; /* Align images to the left for right side */
+}
+
+.side-images img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+    border-radius: 5px;
+}

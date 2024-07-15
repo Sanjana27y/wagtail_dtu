@@ -1,7 +1,31 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags media_tags %}
 
 {% block content %}
+<section class="admission_header">
+    <div class="logo-nav">
+      {% image page.logo original %}
+      <nav>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about_us">ABOUT</a></li>
+            <li><a href="/courses">COURSE</a></li>
+            <li><a href="/faculty">FACULTY</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
+            <li><a href="/admission">ADMISSION</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+    </div>
+  </section>
+
+  <div class="admission-box">
+    <h1>{{ page.title }}</h1>
+  </div>
 <div class="announcement-bar">
     <marquee behavior="scroll" direction="left">
         {% for announcement in page.announcements.all %}

@@ -14,7 +14,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-from wagtailmedia.edit_handlers import MediaChooserPanel
+# from wagtailmedia.edit_handlerspi import MediaChooserPanel
 
 class HomePage(Page):
     logo = models.ForeignKey(
@@ -31,15 +31,8 @@ class HomePage(Page):
         FieldPanel('big_image'),
         InlinePanel('homepage_announcements', label="Announcements"),
         InlinePanel('important_links', label="Important Links"),
-        InlinePanel('facilities', label="Facilities"),
-        # MultiFieldPanel(
-        #     [
-        #         InlinePanel('facilities', label="Facilities"),
-        #     ],
-        #     heading="Facilities",
-        # ),        
+        InlinePanel('director_messages', label="Director's Message"),   
         InlinePanel('web_resources', label="Web Resources"),
-        # InlinePanel('contact_us', label="Contact Us"),
     ]
 
 class HomePageAnnouncement(Orderable):
@@ -62,19 +55,38 @@ class ImportantLink(Orderable):
         FieldPanel('link'),
     ]
 
-class Facility(Orderable):
-    page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='facilities')
-    title = models.CharField(max_length=250)
-    video = models.ForeignKey(
-        'wagtailmedia.Media', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+# class Facility(Orderable):
+#     page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='facilities')
+#     title = models.CharField(max_length=250)
+#     video = models.ForeignKey(
+#         'wagtailmedia.Media', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+#     )
+
+
+#     panels = [
+#         FieldPanel('title'),
+#         MediaChooserPanel('video'),
+#     ]
+class DirectorMessage(models.Model):
+    page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='director_messages')
+    image = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
     )
-
-
+    message = models.TextField()
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    
     panels = [
-        FieldPanel('title'),
-        MediaChooserPanel('video'),
+        FieldPanel('image'),
+        FieldPanel('message'),
+        MultiFieldPanel(
+            [
+                FieldPanel('name'),
+                FieldPanel('position'),
+            ],
+            heading="Director's Information"
+        ),
     ]
-
 class WebResource(Orderable):
     page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='web_resources')
     title = models.CharField(max_length=250)
@@ -89,21 +101,13 @@ class WebResource(Orderable):
         FieldPanel('link'),
     ]
 
-# class ContactUs(Orderable):
-#     page = ParentalKey('HomePage', on_delete=models.CASCADE, related_name='contact_us')
-#     text = models.CharField(max_length=250)
-#     link = models.URLField()
-
-#     panels = [
-#         FieldPanel('text'),
-#         FieldPanel('link'),
-#     ]
-
-
 
 
 
 class AboutUsPage(Page):
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
     intro = RichTextField(blank=True)
     vision_mission = StreamField(
         [('paragraph', blocks.RichTextBlock())], null=True, blank=True)
@@ -117,6 +121,7 @@ class AboutUsPage(Page):
         [('image', ImageChooserBlock())], null=True, blank=True)
   
     content_panels = Page.content_panels + [
+        FieldPanel('logo'),
         FieldPanel('intro'),
         FieldPanel('vision_mission'),
         FieldPanel('history'),
@@ -126,9 +131,13 @@ class AboutUsPage(Page):
     ]
 
 class CoursesPage(Page):
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
     intro = models.CharField(max_length=255, blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('logo'),
         FieldPanel('intro'),
         InlinePanel('courses', label="Courses"),
     ]
@@ -152,34 +161,49 @@ class Course(Orderable):
     ]
 
 class FacultyPage(Page):
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('logo'),
         FieldPanel('intro', classname="full"),
         InlinePanel('branches', label="Branches"),
     ]
 
 class Branch(Orderable):
+    # logo = models.ForeignKey(
+    #     'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    # )
     page = ParentalKey('main.FacultyPage', on_delete=models.CASCADE, related_name='branches')
     title = models.CharField(max_length=250)
     image = models.ForeignKey('wagtailimages.Image', on_delete=models.SET_NULL, null=True, blank=True, related_name='+')
     branch_faculty_page = models.ForeignKey('FacultyBranchPage', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
 
     panels = [
+        # FieldPanel('logo'),
         FieldPanel('title'),
         FieldPanel('image'),
         PageChooserPanel('branch_faculty_page'),
     ]
 
 class FacultyBranchPage(Page):
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('logo'),
         FieldPanel('intro', classname="full"),
         InlinePanel('faculties', label="Faculties"),
     ]
 
 class Faculty(Orderable):
+    # logo = models.ForeignKey(
+    #     'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    # )
     page = ParentalKey(FacultyBranchPage, on_delete=models.CASCADE, related_name='faculties')
     name = models.CharField(max_length=250)
     designation = models.CharField(max_length=250, blank=True)
@@ -188,6 +212,7 @@ class Faculty(Orderable):
     image = models.ForeignKey('wagtailimages.Image', on_delete=models.SET_NULL, null=True, blank=True, related_name='+')
 
     panels = [
+        # FieldPanel('logo'),
         FieldPanel('name'),
         FieldPanel('designation'),
         FieldPanel('phone'),
@@ -198,9 +223,13 @@ class Faculty(Orderable):
 
 
 class GalleryPage(Page):
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('logo'),
         FieldPanel('intro', classname="full"),
         InlinePanel('headings', label="Gallery Headings"),
     ]
@@ -253,12 +282,16 @@ class Publication(Orderable):
         FieldPanel('link'),
     ]
 class AdmissionPage(Page):
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
     intro_heading = models.CharField(max_length=250, blank=True)
     intro_text = RichTextField(blank=True)
     allotment_notice = models.CharField(max_length=250, blank=True)
     allotment_link = models.URLField(blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('logo'),
         InlinePanel('announcements', label="Announcements"),
         FieldPanel('intro_heading'),
         FieldPanel('intro_text'),
@@ -277,6 +310,9 @@ class Announcement(Orderable):
     ]
 
 class ContactPage(Page):
+    logo = models.ForeignKey(
+        'wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+'
+    )
     emergency_helpline = models.TextField(blank=True)
     contact_info = models.TextField(blank=True)
     email = models.EmailField(blank=True)
@@ -286,6 +322,7 @@ class ContactPage(Page):
     address_link = models.URLField(blank=True)
 
     content_panels = Page.content_panels + [
+        FieldPanel('logo'),
         FieldPanel('emergency_helpline', classname="full"),
         FieldPanel('contact_info', classname="full"),
         FieldPanel('email', classname="full"),

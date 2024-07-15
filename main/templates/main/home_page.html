@@ -6,7 +6,7 @@
     <div class="logo-nav">
         {% image page.logo original %}
         <nav>
-            <a href="#"><img src="images/logo.png" alt="Logo"></a>
+            
 
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times" onclick="hideMenu()"></i>
@@ -18,7 +18,7 @@
                     <li><a href="/faculty">FACULTY</a></li>
                     <li><a href="/gallery">GALLERY</a></li>
                     <li><a href="/admission">ADMISSION</a></li>
-                    <li><a href="/publication">PUBLICATION</a></li>
+                    {% comment %} <li><a href="/publication">PUBLICATION</a></li> {% endcomment %}
                     <li><a href="/contact">CONTACT</a></li>
                 </ul>
             </div>
@@ -29,7 +29,10 @@
 
     <div class="main-image">
         {% comment %} {% image page.main_image original %} {% endcomment %}
-        <img src="images/big pic.png" alt="Logo">
+        {% image page.big_image width-1200 class="hero-image" %}
+        <div class="hero-text">
+            <h1>Delhi Technology University</h1>
+        </div>
     </div>
 
     <div class="cards">
@@ -51,25 +54,21 @@
         </div>
     </div>
 
-    <div class="facilities">
-        <h2>Our Facilities</h2>
-        <video controls loop>
-            <source src="{{ page.facility_video.url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        {% comment %} <video src="{{ page.video }}" autoplay loop muted></video> {% endcomment %}
-    </div> 
-    {% comment %} {% for facility in page.facilities.all %}
-    <div class="facility">
-        <h3>{{ facility.title }}</h3>
-        {% if facility.video %}
-            {% include 'wagtailmedia/media_player.html' with media=facility.video %}
-        {% endif %}
+    <div class="directors-message">
+        {% for message in page.director_messages.all %}
+            <div class="message-container">
+                {% image message.image fill-200x200 %}
+                <div class="message-content">
+                    <h2>Director's Message</h2>
+                    <p>{{ message.message }}</p>
+                    <p><strong>{{ message.name }}</strong></p>
+                    <p>{{ message.position }}</p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-     {% endfor %} {% endcomment %}
-   
 
-    <div class="web-resources">
+ {% comment %} <div class="web-resources">
         <h2>Web Resources</h2>
         {% for resource in page.web_resources.all %}
             <div class="resource">
@@ -77,7 +76,33 @@
                 <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
             </div>
         {% endfor %}
+    </div>  {% endcomment %}
+    {% comment %} <div class="web-resources">
+        <h2>Web Resources</h2>
+        {% for resource in page.web_resources.all %}
+            <div class="resource">
+                <a href="{{ resource.link }}" target="_blank">
+                    {% image resource.logo original %}
+                    <span>{{ resource.title }}</span>
+                </a>
+            </div>
+        {% endfor %}
+    </div> {% endcomment %}
+    
+    <div class="web-resources">
+        <h2>Web Resources</h2>
+        <div class="resources-container">
+            {% for resource in page.web_resources.all %}
+                <div class="resource">
+                    <a href="{{ resource.link }}" target="_blank">
+                        {% image resource.logo original %}
+                        <span>{{ resource.title }}</span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+    
 
     <div class="other-links">
         <h2>Other Important Links</h2>
@@ -103,240 +128,3 @@
 {% endblock %}
 
 
-
-
-{% comment %} {% extends "base.html" %}
-{% load wagtailcore_tags %}
-
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script src="https://kit.fontawesome.com/e6b8371d90.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap"
-        rel="stylesheet">
-        <title>Eduford - World Biggest University</title>
-</head>
-
-<body>
-
-    <!----Header---->
-    <section class="header">
-        <nav>
-            <a href="#"><img src="images/logo.png" alt="Logo"></a>
-
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-
-                <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="/about_us">ABOUT</a></li>
-                    <li><a href="/courses">COURSE</a></li>
-                    <li><a href="/faculty">FACULTY</a></li>
-                    <li><a href="/gallery">GALLERY</a></li>
-                    <li><a href="/admission">ADMISSION</a></li>
-                    <li><a href="/publication">PUBLICATION</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-            </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-
-        </nav>
-
-        <div class="text-box">
-            <h1>World's Biggest University</h1>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque <br> laudantium,
-                totam rem aperiam.</p>
-            <a href="" class="hero-btn">Visit Us To Know More</a>
-        </div>
-    </section>
-
-    <!----Course---->
-    <section class="course">
-        <h1>Courses We Offer</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.</p>
-        <div class="row">
-            <div class="course-col">
-                <h3>Intermediate</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-            <div class="course-col">
-                <h3>Degree</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-            <div class="course-col">
-                <h3>Post Graduate</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div>
-        </div>
-    </section>
-
-
-    <!----Facilities---->
-    <section class="facilities">
-        <h1>Our Facilities</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.</p>
-        <div class="row">
-            <div class="facilities-col">
-                <img src="images/library.png" alt="Library">
-                <h3>World Class Library</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem labore doloribus cupiditate vero fugit.
-                </p>
-            </div>
-
-            <div class="facilities-col">
-                <img src="images/basketball.png" alt="Play Ground">
-                <h3>Largest Play Ground</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem labore doloribus cupiditate vero fugit.
-                </p>
-            </div>
-
-            <div class="facilities-col">
-                <img src="images/cafeteria.png" alt="Cafeteria">
-                <h3>Tasty And Healthy</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem labore doloribus cupiditate vero fugi.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!----Testimonials---->
-    <section class="testimonials">
-        <h1>What Out Students Says?</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.</p>
-
-        <div class="row">
-            <div class="testimonials-col">
-                <img src="images/user1.jpg" alt="User1">
-                <div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, voluptatibus tenetur maxime
-                        atque, doloremque laboriosam officiis numquam.</p>
-                    <h3>Christine Birley</h3>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
-            </div>
-
-            <div class="testimonials-col">
-                <img src="images/user2.jpg" alt="User2">
-                <div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, voluptatibus tenetur maxime
-                        atque, doloremque laboriosam officiis numquam.</p>
-                    <h3>Saiyed Rashed</h3>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star-half" aria-hidden="true"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!----Call For Action---->
-    <section class="cfa">
-        <h1>Enroll For Our Various Online Courses<br>Anywhere From The World</h1>
-        <a href="#" class="hero-btn">CONTACT US</a>
-    </section>
-
-    <!----Footer---->
-    <section class="footer">
-        <div class="icons">
-            <i class="fa fa-facebook" aria-hidden="true"></i>
-            <i class="fa fa-twitch" aria-hidden="true"></i>
-            <i class="fa fa-instagram" aria-hidden="true"></i>
-            <i class="fa fa-linkedin" aria-hidden="true"></i>
-        </div>
-        <p>Made with <i class="fa fa-heart" aria-hidden="true"></i> By <a href="#">MdRasen</a></p>
-    </section>
-
-
-    <!---Javascript for toggole menu--->
-    <script>
-        var navLinks = document.getElementById("navLinks");
-
-        function showMenu() {
-            navLinks.style.right = "0";
-        }
-
-        function hideMenu() {
-            navLinks.style.right = "-200px";
-        }
-    </script>
-
-
-</body>
-
-</html>
-{% comment %} 
-    <!-- Navigation-->
-    <nav id="mainNav" class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top">
-      <div class="container">
-          <a class="navbar-brand" href="#page-top">{{ self.full_name }}</a>
-          <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarResponsive"
-                  aria-controls="navbarResponsive"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation">
-              Menu
-              <i class="fas fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item mx-0 mx-lg-1">
-                      <a class="nav-link py-3 px-0 px-lg-3 rounded" href="/about_us">About</a>
-                  </li>
-                  <li class="nav-item mx-0 mx-lg-1">
-                      <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#skills">Skills</a>
-                  </li>
-                  <li class="nav-item mx-0 mx-lg-1">
-                      <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a>
-                  </li>
-                  <li class="nav-item mx-0 mx-lg-1">
-                      <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-  </nav>
-
-
-  <h1>{{ page.title }}</h1>
-  <div class="intro">
-    {{ page.intro|richtext }}
-  </div>
-  <div class="slideshow">
-    {% for slide in page.slideshow_images %}
-      <div class="slide">
-        {% comment %} {%image page.slideshow_images fill-1400x300 as img %} {% endcomment %}
-        {% comment %} <img src="{{ slide.value.url }}" alt="Slideshow image">
-      </div>
-    {% endfor %}
-  </div>
-  <div class="important-points">
-    <ul>
-      {% for point in page.important_points %}
-        <li>{{ point.value }}</li>
-      {% endfor %}
-    </ul>
-  </div> {% endcomment %}
-{% comment %} {% endblock %}   {% endcomment %}

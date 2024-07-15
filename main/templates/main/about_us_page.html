@@ -1,8 +1,38 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags media_tags %}
 
 {% block content %}
+<section class="about_header">
+    <div class="logo-nav">
+        {% image page.logo original %}
+        <nav>
+            {% comment %} <a href="#"><img src="images/logo.png" alt="Logo"></a> {% endcomment %}
+
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/about_us">ABOUT</a></li>
+                    <li><a href="/courses">COURSE</a></li>
+                    <li><a href="/faculty">FACULTY</a></li>
+                    <li><a href="/gallery">GALLERY</a></li>
+                    <li><a href="/admission">ADMISSION</a></li>
+                    {% comment %} <li><a href="/publication">PUBLICATION</a></li> {% endcomment %}
+                    <li><a href="/contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+
+        </nav>
+    </div>
+    <div class="about-box">
     <h1>{{ page.title }}</h1>
+    </div>
+    </section>    
+    <section class="about-us">
+        {% comment %} <div class="row"> {% endcomment %}
+            <div class="about-col">
     <div>{{ page.intro|richtext }}</div>
     <div class="about-us-section">
         <h2>Vision and Mission</h2>
@@ -39,4 +69,8 @@
     {% endfor %}
         {% comment %} <div>{{ page.campus_map|richtext }}</div> {% endcomment %}
     </div>
+
+</div>
+</div>
+</section>
 {% endblock %}

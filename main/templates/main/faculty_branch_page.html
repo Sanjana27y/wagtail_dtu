@@ -2,10 +2,37 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
+<section class="facultybranch_header">
+    <div class="logo-nav">
+      {% image page.logo original %}
+      <nav>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about_us">ABOUT</a></li>
+            <li><a href="/courses">COURSE</a></li>
+            <li><a href="/faculty">FACULTY</a></li>
+            <li><a href="/gallery">GALLERY</a></li>
+            <li><a href="/admission">ADMISSION</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+    </div>
+  </section>
+  <div class="faculty_branch-box">
     <h1>{{ page.title }}</h1>
-    <div>{{ page.intro|richtext }}</div>
+</div>
+<div class="gallery-intro">
+  {{ page.intro|richtext }}
+</div>
     <div class="faculties">
         {% for faculty in page.faculties.all %}
+        <div class="logo-nav">
+          {% image page.logo original %}
+        </div>
             <div class="faculty-item">
                 {% if faculty.image %}
                     {% image faculty.image width-200 %}
@@ -19,44 +46,3 @@
     </div>
 {% endblock %}
 
-
-{% comment %} {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ self.title }}</title>
-</head>
-<body>
-    <h1>{{ self.title }}</h1>
-    <div class="faculty-list">
-        {% for faculty in faculties %}
-            <div class="faculty-item">
-                {% if faculty.image %}
-                    <img src="{{ faculty.image.url }}" alt="{{ faculty.name }}">
-                {% endif %}
-                <h2>{{ faculty.name }}</h2>
-                <p>{{ faculty.designation }}</p>
-                <p>{{ faculty.phone }}</p>
-                <p>{{ faculty.email }}</p>
-            </div>
-        {% endfor %}
-    </div>
-</body>
-</html> {% endcomment %}
-
-
-{% comment %} {% block content %}
-  <h1>{{ page.title }}</h1>
-  <div>{{ page.intro|richtext }}</div>
-  <div>
-    {% for branch in page.branches.all %}
-      <div>
-        <a href="{% pageurl branch.branch_faculty_page %}">
-          {% image branch.image width-400 %}
-          <h2>{{ branch.title }}</h2>
-        </a>
-      </div>
-    {% endfor %}
-  </div>
-{% endblock %} {% endcomment %}

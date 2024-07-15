@@ -1,68 +1,46 @@
-{% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% extends "base.html" %} {% load wagtailcore_tags wagtailimages_tags %} {% load
+static %} {% block content %}
 
+<section class="courses_header">
+  <div class="logo-nav">
+    {% image page.logo original %}
+    <nav>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="/">HOME</a></li>
+          <li><a href="/about_us">ABOUT</a></li>
+          <li><a href="/courses">COURSE</a></li>
+          <li><a href="/faculty">FACULTY</a></li>
+          <li><a href="/gallery">GALLERY</a></li>
+          <li><a href="/admission">ADMISSION</a></li>
+          <li><a href="/contact">CONTACT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+  </div>
+</section>
 
-{% comment %} 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Courses</title>
-    <style>
-        .course-item {
-            margin-bottom: 20px;
-        }
-        .course-img {
-            width: 400px;
-        }
-        .course-title {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .course-description {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Courses</h1>
-    <div>
-        {% for course in page.courses.all %}
-        <div class="course-item">
-            <a href="{{ course.pdf.url }}" target="_blank">
-                {% image course.image width-400 class="course-img" %}
-                <div>{{ course.title }}</div>
-            </a>
-            <div class="course-description">
-                {{ course.description }}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</body>
-</html> {% endcomment %}
-
-
- {%load wagtailcore_tags%}
-{% load static %}
-
-
- {% block content %}
-  <h1>{{ page.title }}</h1>
+  <div class="course-box">
+    <h1>{{ page.title }}</h1>
+  </div>
+  <div class ="courses-intro">
   <p>{{ page.intro }}</p>
+  </div>
   <div class="courses">
     {% for course in page.courses.all %}
-      <div class="course">
-        <figure class="effect-bubba">
+    <div class="course">
+      <figure class="effect-bubba">
         <a href="{{ course.pdf.url }}" target="_blank">
-            {% image course.image width-400 class="course-img" %}
-              <div> View Cirriculum </div>
-         </a>
-        </figure>
-        <h2>{{ course.title }}</h2>
-        <p>{{ course.description }}</p>
+          {% image course.image width-200 class="course-img" %}
+        </a>
+      </figure>
+      <div class='course_description'>
+      <h2>{{ course.title }}</h2>
+      <p>{{ course.description }}</p>
       </div>
+    </div>
     {% endfor %}
   </div>
-{% endblock %} 
+  {% endblock %}
